@@ -1,0 +1,23 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>유한양행 DART 재무분석</title><script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+body{font-family:Arial,sans-serif;max-width:1200px;margin:30px auto;padding:0 18px;background:#f7f7f7;color:#222}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.card,.panel{background:white;border:1px solid #ddd;border-radius:10px;padding:18px;margin-top:16px}
+.label{font-size:13px;color:#666}.value{font-size:23px;font-weight:700;margin-top:8px}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid #eee;padding:9px;text-align:right}
+th:first-child,td:first-child{text-align:center}.note{font-size:12px;color:#666;line-height:1.6}
+</style></head><body>
+<h1>유한양행 DART 재무분석</h1><p>연결재무제표(CFS) · 사업보고서 · 최근 수집 연도 기준</p>
+<div class="cards">__CARDS__</div>
+<div class="panel"><div id="revenue"></div></div><div class="panel"><div id="margin"></div></div>
+<div class="panel"><h2>주요 재무데이터 및 비율</h2><table><thead><tr>
+<th>연도</th><th>매출액</th><th>영업이익</th><th>순이익</th><th>영업이익률</th><th>ROA</th><th>ROE</th><th>유동비율</th><th>부채비율</th><th>CFO/순이익</th>
+</tr></thead><tbody>__ROWS__</tbody></table></div>
+<div class="panel note"><b>분석 기준</b><br>첨부 가이드의 금액·비율 동시 확인, 3~5개 기간 추세, 연결/별도 기준 통일 원칙을 적용합니다. ROA·ROE·회전율은 평균 잔액을 사용합니다.<br><br>
+주의: 이자부차입금, EBITDA, CAPEX, FCF, ROIC 등은 DART 세부 계정 매핑 검증 후 확정해야 하므로 미확정 값으로 남길 수 있습니다.</div>
+<script>
+const years=__YEARS__,revenue=__REVENUE__,opm=__OPM__,roe=__ROE__;
+Plotly.newPlot("revenue",[{x:years,y:revenue,type:"bar",name:"매출액"}],{title:"매출액 추이",margin:{t:50,l:60,r:20,b:50}},{responsive:true});
+Plotly.newPlot("margin",[{x:years,y:opm,type:"scatter",mode:"lines+markers",name:"영업이익률"},{x:years,y:roe,type:"scatter",mode:"lines+markers",name:"ROE"}],{title:"수익성 추이",yaxis:{title:"%"},margin:{t:50,l:60,r:20,b:50}},{responsive:true});
+</script></body></html>
